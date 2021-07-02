@@ -1,4 +1,4 @@
-# ExcelAutomation
+# Excel Spreadsheet Automation
 
 ## This Repo will hold excel automation projects
 #### Currently listed is a spreadsheet audit
