@@ -14,19 +14,23 @@ collect = []
 for file in files:
     with open(file, 'r') as file_handle:
         filename = file[61:-20]
-        print(filename)
         for line in file_handle:
             for word in line.split():
-
-                if word.startswith('XXXX.'):
-
+                if word.startswith('FAST'):
                     collect.append({'keyword': word, 'filename': filename})
-                elif word.startswith('XXXX.['):
-
+                elif word.startswith('FAST.['):
+                    collect.append({'keyword': word, 'filename': filename})
+                elif word.startswith('Fast'):
+                    collect.append({'keyword': word, 'filename': filename})
+                elif word.startswith('Fast.['):
+                    collect.append({'keyword': word, 'filename': filename})
+                elif word.startswith('fast'):
+                    collect.append({'keyword': word, 'filename': filename})
+                elif word.startswith('fast.['):
                     collect.append({'keyword': word, 'filename': filename})
                 else:
                     pass
-
+                
 words_files_tidy = pd.DataFrame.from_records(collect).drop_duplicates()
 words_files_tidy.to_excel(tidyoutput)
 final_df = words_files_tidy.pivot(index='keyword', columns='filename', values='filename').reset_index()
